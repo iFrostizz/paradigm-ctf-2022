@@ -37,6 +37,11 @@ contract MerkleDistributor {
         claimedBitMap[claimedWordIndex] = claimedBitMap[claimedWordIndex] | (1 << claimedBitIndex);
     }
 
+    // @ctf index + account + amount = 32 + 20 + 12 = 64 bytes
+    // @ctf merkleProof = 32 bytes array. 2 proofs = 64 bytes
+    // @ctf so we can skip the first leaf
+    // @ctf pass index, account, amount as first leaf
+    // @ctf we need to find an amount that is < 75.000 * 1e18 in the proof
     function claim(uint256 index, address account, uint96 amount, bytes32[] memory merkleProof) external {
         require(!isClaimed(index), 'MerkleDistributor: Drop already claimed.');
 
