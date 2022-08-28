@@ -10,4 +10,6 @@ out/
 # IDE
 .idea/
 
-src/vanity/rust/target
+src/vanity/rust/target*
+
+.env
